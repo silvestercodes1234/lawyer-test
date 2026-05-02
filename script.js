@@ -29,7 +29,7 @@ const T = {
     'card.cedo.title': 'CEDO', 'card.cedo.desc': 'Reprezentare la Curtea Europeană a Drepturilor Omului. Cauze internaționale complexe.', 'card.cedo.tag': 'Internațional',
     'motto.label': 'Adagiu Latin', 'motto.translation': '„Fie dreptate, chiar de piere lumea."',
     'despre.label': 'Despre Avocat', 'despre.title': 'Ion Proca',
-    'despre.para1': 'Avocatul Ion Proca este membru al Baroului de avocați de pe lângă Curtea de Apel Chișinău, cu o experiență de <strong>11 ani</strong> în practica juridică. Sediul biroului avocațial se află în mun. Chișinău, str. Ismail 98/4 (Clădirea Lunedor, etaj 2), iar serviciile avocațiale se prestează la nivel național și internațional.',
+    'despre.para1': 'Avocatul Ion Proca este membru al Baroului de avocați de pe lângă Curtea de Apel Chișinău, cu o experiență de <strong>11 ani</strong> în practica juridică. Serviciile avocațiale se prestează la nivel național și internațional.',
     'despre.para2': 'Ion Proca este acreditat în calitate de <strong>Mediator CEDR</strong> (Centre for Effective Dispute Resolution — Anglia), una dintre cele mai prestigioase acreditări internaționale în domeniul medierii.',
     'despre.cred1.strong': 'Barou de avocați — Curtea de Apel Chișinău', 'despre.cred1.span': 'Membru activ, practică autorizată la nivel național',
     'despre.cred2.strong': 'Mediator CEDR — Centre for Effective Dispute Resolution', 'despre.cred2.span': 'Acreditare internațională, Anglia',
@@ -70,7 +70,7 @@ const T = {
     'card.cedo.title': 'ЕСПЧ', 'card.cedo.desc': 'Представительство в Европейском суде по правам человека. Сложные международные дела.', 'card.cedo.tag': 'Международный',
     'motto.label': 'Латинская максима', 'motto.translation': '«Пусть восторжествует справедливость, хотя бы погиб мир.»',
     'despre.label': 'Об адвокате', 'despre.title': 'Ион Прока',
-    'despre.para1': 'Адвокат Ион Прока является членом Адвокатуры при Апелляционном суде Кишинёва, с опытом работы <strong>11 лет</strong> в юридической практике. Офис находится в мун. Кишинёв, ул. Исмаил 98/4 (здание Lunedor, этаж 2). Услуги оказываются на национальном и международном уровне.',
+    'despre.para1': 'Адвокат Ион Прока является членом Адвокатуры при Апелляционном суде Кишинёва, с опытом работы <strong>11 лет</strong> в юридической практике. Услуги оказываются на национальном и международном уровне.',
     'despre.para2': 'Ион Прока аккредитован как <strong>Медиатор CEDR</strong> (Центр эффективного урегулирования споров — Англия), одна из наиболее престижных международных аккредитаций в области медиации.',
     'despre.cred1.strong': 'Адвокатура при Апелляционном суде Кишинёва', 'despre.cred1.span': 'Действующий член, практика авторизована на национальном уровне',
     'despre.cred2.strong': 'Медиатор CEDR — Центр эффективного урегулирования споров', 'despre.cred2.span': 'Международная аккредитация, Англия',
@@ -261,59 +261,10 @@ const T = {
 }());
 
 // ================================================
-// CONTACT FORM — client-side validation + submit
+// CONTACT FORM — prevent default (demo only)
 // ================================================
 (function () {
-  const form    = document.getElementById('contactForm');
-  const success = document.getElementById('formSuccess');
-  if (!form || !success) return;
-
-  // Remove error state when user types
-  form.querySelectorAll('.form-input').forEach(input => {
-    input.addEventListener('input', () => input.classList.remove('is-error'));
-  });
-
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-
-    // Validate required fields
-    let isValid = true;
-    form.querySelectorAll('[required]').forEach(field => {
-      if (!field.value.trim()) {
-        field.classList.add('is-error');
-        if (isValid) field.focus(); // focus first invalid
-        isValid = false;
-      }
-    });
-    if (!isValid) return;
-
-    // Show loading state
-    const submitBtn = form.querySelector('button[type="submit"]');
-    const originalText = submitBtn.textContent;
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Se trimite…';
-
-    /*
-     * Replace the setTimeout below with a real fetch() to your
-     * backend endpoint or email service (e.g. Formspree, EmailJS).
-     *
-     * Example with Formspree:
-     *   fetch('https://formspree.io/f/YOUR_ID', {
-     *     method: 'POST',
-     *     headers: { 'Accept': 'application/json' },
-     *     body: new FormData(form),
-     *   })
-     *   .then(() => showSuccess())
-     *   .catch(() => { submitBtn.disabled = false; submitBtn.textContent = originalText; });
-     */
-    setTimeout(showSuccess, 1400);
-
-    function showSuccess() {
-      success.hidden = false;
-      form.reset();
-      submitBtn.disabled = false;
-      submitBtn.textContent = originalText;
-      success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
-  });
+  const form = document.getElementById('contactForm');
+  if (!form) return;
+  form.addEventListener('submit', e => { e.preventDefault(); });
 }());

@@ -401,6 +401,18 @@ ul { list-style: none; }
 }
 
 /* ================================================
+   SECTION ORDER — visual reorder via flexbox
+================================================ */
+body > main {
+  display: flex;
+  flex-direction: column;
+}
+.hero     { order: 1; }
+.despre   { order: 2; }
+.servicii { order: 3; }
+.contact  { order: 4; }
+
+/* ================================================
    HERO
 ================================================ */
 .hero {
@@ -813,9 +825,7 @@ ul { list-style: none; }
 }
 
 .despre__inner {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-xl);
+  /* single column */
 }
 
 .despre__para {
@@ -1245,19 +1255,8 @@ ul { list-style: none; }
   /* Practice areas — 2 cols */
   .servicii__grid { grid-template-columns: repeat(2, 1fr); }
 
-  /* About — side by side */
-  .despre__inner {
-    flex-direction: row;
-    align-items: flex-start;
-    gap: var(--space-2xl);
-  }
-  .despre__text-col { flex: 1; min-width: 0; }
-  .despre__photo-col {
-    flex-shrink: 0;
-    width: 340px;
-    order: 0;
-  }
-  .despre__photo-frame { max-width: none; }
+  /* About — single column, max readable width */
+  .despre__text-col { max-width: 720px; }
 
   .contact__form {
     padding: 2rem 1.75rem;
