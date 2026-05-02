@@ -1177,6 +1177,7 @@ body > main {
 ================================================ */
 .mobile-cta {
   display: none;
+}
 .mobile-cta:hover,
 .mobile-cta:focus-visible {
   background-color: var(--color-accent-dark);
@@ -1290,6 +1291,14 @@ body > main {
   .footer__top {
     grid-template-columns: 2fr 1fr 1fr;
   }
+
+  /* Section padding — comfortable tablet step */
+  .servicii,
+  .despre,
+  .contact { padding-top: 5rem; padding-bottom: 5rem; }
+
+  /* About text — centred within container */
+  .despre__text-col { margin-inline: auto; }
 }
 
 /* ================================================
@@ -1310,6 +1319,47 @@ body > main {
   .despre,
   .contact,
   .motto-section { padding-top: var(--space-3xl); padding-bottom: var(--space-3xl); }
+
+  /* Services — wider gaps on desktop */
+  .servicii__grid { gap: 1.5rem; }
+
+  /* About — slightly wider reading column */
+  .despre__text-col { max-width: 800px; }
+
+  /* Contact form — more room on desktop */
+  .contact__form { padding: 2rem 2rem; }
+}
+
+/* ================================================
+   LARGE DESKTOP 1280px+
+================================================ */
+@media (min-width: 1280px) {
+
+  /* Hero text — more breathing room on wide screens */
+  .hero__text {
+    max-width: 700px;
+  }
+
+  /* Constrain photo column so it doesn't dominate on ultrawide */
+  .hero__photo-col {
+    width: 40%;
+    max-width: 640px;
+  }
+
+  /* Services — generous spacing between cards */
+  .servicii__grid {
+    gap: 1.875rem;
+  }
+
+  /* Contact form — spacious feel */
+  .contact__form {
+    padding: 2.75rem 2.5rem;
+  }
+
+  /* Footer — brand column wider on large screens */
+  .footer__top {
+    grid-template-columns: 3fr 1fr 1fr;
+  }
 }
 
 /* ================================================
