@@ -100,6 +100,7 @@ const T = {
   let currentLang = localStorage.getItem('lang') || 'ro';
 
   function applyLang(lang) {
+    if (!T[lang]) lang = 'ro'; // fallback if localStorage has unexpected value
     currentLang = lang;
     localStorage.setItem('lang', lang);
     document.documentElement.lang = lang;
